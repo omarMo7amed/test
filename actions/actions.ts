@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 "use server";
 
 import prisma from "@/lib/prisma";
@@ -14,11 +13,11 @@ const adminSchema = z.object({
     .min(1, "Name is required")
     .max(50, "Name is too long"),
   file: z
-    .instanceof(File, { message: "File is required" }) 
-    .refine((file) => file.size > 0, { message: "File cannot be empty" }) 
+    .instanceof(File, { message: "File is required" })
+    .refine((file) => file.size > 0, { message: "File cannot be empty" })
     .refine((file) => file.size <= 5 * 1024 * 1024, {
       message: "File must be less than 1MB",
-    }) 
+    })
     .refine(
       (file) =>
         ["image/jpeg", "image/jpg", "image/png", "image/webp"].includes(

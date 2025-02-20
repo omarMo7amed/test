@@ -10,6 +10,10 @@ export default function Form() {
   const [image, setImage] = useState<File | null>(null);
   const [state, addAction, isLoading] = useActionState(addAdmin, undefined);
 
+  if (!state?.success) {
+    console.log(state?.errors);
+  }
+
   return (
     <form
       action={addAction}
